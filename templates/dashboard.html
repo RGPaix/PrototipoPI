@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard de {{ usuario.nome }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Dashboard de {{ usuario.nome }}</h1>
+
+    <h2>Livros Lidos:</h2>
+    <ul>
+        {% for livro in livros_lidos %}
+            <li>{{ livro.titulo }} por {{ livro.autor }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Adicionar Leitura:</h2>
+    <form action="{{ url_for('adicionar_leitura') }}" method="post">
+    <input type="hidden" name="usuario_id" value="{{ usuario.id }}">
+
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" name="titulo" required>
+
+    <label for="autor">Autor:</label>
+    <input type="text" id="autor" name="autor" required>
+
+    <label for="genero">Gênero:</label>
+    <input type="text" id="genero" name="genero">
+
+    <label for="palavras_chave">Palavras-chave:</label>
+    <input type="text" id="palavras_chave" name="palavras_chave">
+
+    <button type="submit">Adicionar</button>
+    </form>
+
+    <p><a href="{{ url_for('recomendar_leituras', usuario_id=usuario.id) }}">Ver Recomendações</a></p>
+    <p><a href="{{ url_for('index') }}">Voltar para a lista de usuários</a></p>
+</body>
+</html>

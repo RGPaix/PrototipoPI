@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recomendações para {{ usuario.nome }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Recomendações para {{ usuario.nome }}</h1>
+    {% if recomendacoes %}
+        <ul>
+            {% for livro in recomendacoes %}
+                <li>{{ livro.titulo }} por {{ livro.autor }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Não foi possível gerar recomendações no momento.</p>
+    {% endif %}
+    <p><a href="{{ url_for('dashboard_usuario', usuario_id=usuario.id) }}">Voltar para o Dashboard</a></p>
+</body>
+</html>
