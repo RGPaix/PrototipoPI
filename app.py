@@ -1,6 +1,6 @@
-
 from flask import Flask, render_template, request, redirect, url_for
-from models import Sistema, criar_tabelas
+from database import criar_tabelas
+from models import Sistema
 
 app = Flask(__name__)
 DB_PATH = 'leituras.db'

@@ -1,7 +1,10 @@
 import sqlite3
 
+def conectar(db_path='leituras.db'):
+    return sqlite3.connect(db_path)
+
 def criar_tabelas(db_path='leituras.db'):
-    conn = sqlite3.connect(db_path)
+    conn = conectar(db_path)
     cursor = conn.cursor()
 
     cursor.execute('''
